@@ -43,7 +43,6 @@ function start() {
             color: response.color,
             
           };
-  
           const SVG = render(data);
           fs.writeFileSync("./examples/yourSVG.svg", SVG);
         } else {
