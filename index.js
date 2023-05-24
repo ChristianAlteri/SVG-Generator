@@ -4,7 +4,7 @@ import inquirer from "inquirer";
 function constructShape(html, company, color) {
   const formattedHTML = 
   `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="${color}" />
+  <rect width="100%" height="100%" fill="black" />
   ${html}
   <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">${company}</text>
 </svg>`
@@ -26,6 +26,25 @@ function renderShape(company, shape, color) {
   constructShape(html, company, color);
   }
 
+
+  // function validateCompany(company) {
+  //   // Declare function as asynchronous, and save the done callback
+  //   const done = this.async();
+  
+  //   if (company.length > 3) {
+  //     console.log("\nCompany name must be no more than 3 characters.");
+  //     done("Company name must be no more than 3 characters.");
+  //     start(); // Recursive call to restart the prompt
+  //   } else {
+  //     done(null, true);
+  //   }
+  // }
+
+  function validateCompany(company) {
+    // we only provide true if condition is met. Inquirer won't move to next question if false. if false we use the || to pass an err msg. (less of an err more of a blocker)
+    return company.length <= 3 || "Company name must be no more than 3 characters.";
+  }
+
 function start() {
     inquirer
       .prompt([
@@ -33,6 +52,7 @@ function start() {
           type: "input",
           message: "What is the name of your company (must be no more than 3 characters)?",
           name: "company",
+          validate: validateCompany,
         },
         {
           type: "list",
