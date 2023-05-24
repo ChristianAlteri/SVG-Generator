@@ -1,18 +1,19 @@
 import fs from "fs";
 import inquirer from "inquirer";
 
-function constructShape(html, company, color) {
+function constructShape(html, company, color, textColor) {
   const formattedHTML = 
   `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="black" />
   ${html}
-  <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">${company}</text>
+  <text x="150" y="125" font-size="60" text-anchor="middle" fill="${textColor}">${company}</text>
 </svg>`
 
-  fs.writeFileSync("./examples/yourSVG.svg", formattedHTML);
+  fs.writeFileSync("./examples/logo.svg", formattedHTML);
+  console.log("Generated logo.svg");
 }
 
-function renderShape(company, shape, color) {
+function renderShape(company, shape, color, textColor) {
   let html;
 
   if (shape === "circle") {
@@ -23,22 +24,8 @@ function renderShape(company, shape, color) {
     html = `<rect x="60" y="20" width="180" height="160" fill="${color}" />`;
   }
 
-  constructShape(html, company, color);
+  constructShape(html, company, color, textColor);
   }
-
-
-  // function validateCompany(company) {
-  //   // Declare function as asynchronous, and save the done callback
-  //   const done = this.async();
-  
-  //   if (company.length > 3) {
-  //     console.log("\nCompany name must be no more than 3 characters.");
-  //     done("Company name must be no more than 3 characters.");
-  //     start(); // Recursive call to restart the prompt
-  //   } else {
-  //     done(null, true);
-  //   }
-  // }
 
   function validateCompany(company) {
     // we only provide true if condition is met. Inquirer won't move to next question if false. if false we use the || to pass an err msg. (less of an err more of a blocker)
@@ -65,14 +52,14 @@ function start() {
           ],
         },
         {
-          type: "list",
+          type: "input",
           message: "Select the color of your logo:",
           name: "color",
-          choices: [
-            "red",
-            "green",
-            "blue",
-          ],
+        },
+        {
+          type: "input",
+          message: "Select the color of your font:",
+          name: "textColor",
         },
         {
           type: "input",
@@ -82,8 +69,8 @@ function start() {
       ])
       .then((response) => {
         if (response.confirm === "y") {
-          const { company, shape, color } = response;
-          renderShape(company, shape, color)
+          const { company, shape, color, textColor } = response;
+          renderShape(company, shape, color, textColor)
         } else {
           console.log("Let's try that again");
           start();
