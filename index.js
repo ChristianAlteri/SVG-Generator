@@ -1,31 +1,12 @@
 import fs from "fs";
 import inquirer from "inquirer";
+import { Triangle, Circle, Square } from './shapes.js';
 
-function constructShape(html, company, color, textColor) {
-  const formattedHTML = 
-  `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="black" />
-  ${html}
-  <text x="150" y="125" font-size="60" text-anchor="middle" fill="${textColor}">${company}</text>
-</svg>`
 
-  fs.writeFileSync("./examples/logo.svg", formattedHTML);
-  console.log("Generated logo.svg");
-}
 
-function renderShape(company, shape, color, textColor) {
-  let html;
 
-  if (shape === "circle") {
-    html = `<circle cx="150" cy="100" r="80" fill="${color}" />`;
-  } else if (shape === "triangle") {
-    html = `<polygon points="50,100 150,20 250,100" fill="${color}" />`;
-  } else if (shape === "square") {
-    html = `<rect x="60" y="20" width="180" height="160" fill="${color}" />`;
-  }
+ 
 
-  constructShape(html, company, color, textColor);
-  }
 
   function validateCompany(company) {
     // we only provide true if condition is met. Inquirer won't move to next question if false. if false we use the || to pass an err msg. (less of an err more of a blocker)
@@ -70,7 +51,29 @@ function start() {
       .then((response) => {
         if (response.confirm === "y") {
           const { company, shape, color, textColor } = response;
-          renderShape(company, shape, color, textColor)
+
+          let logo;
+
+          if (shape === "triangle") {
+            const triangle = new Triangle(company, color, textColor);
+            logo = triangle.toHTML();
+          } else if (shape === "circle") {
+            const circle = new Circle(company, color, textColor);
+            logo = circle.toHTML();
+          } else if (shape === "square") {
+            const square = new Square(company, color, textColor);
+            logo = square.toHTML();
+          }
+          
+          console.log(logo);
+          
+          // renderShape(company, shape, color, textColor)
+
+          
+          fs.writeFileSync("./examples/logo.svg", logo);
+          console.log("Generated logo.svg");
+        
+
         } else {
           console.log("Let's try that again");
           start();

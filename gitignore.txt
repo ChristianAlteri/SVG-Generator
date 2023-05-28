@@ -1,0 +1,7 @@
+# Ignore all files and folders except 'dist'
+/*
+!/dist/
+
+# Exclude specific files or patterns if needed
+# !/dist/somefile.js
+# !/dist/*.html
