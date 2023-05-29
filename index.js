@@ -2,12 +2,6 @@ import fs from "fs";
 import inquirer from "inquirer";
 import { Triangle, Circle, Square } from './shapes.js';
 
-
-
-
- 
-
-
   function validateCompany(company) {
     // we only provide true if condition is met. Inquirer won't move to next question if false. if false we use the || to pass an err msg. (less of an err more of a blocker)
     return company.length <= 3 || "Company name must be no more than 3 characters.";
@@ -65,15 +59,8 @@ function start() {
             logo = square.toHTML();
           }
           
-          console.log(logo);
-          
-          // renderShape(company, shape, color, textColor)
-
-          
           fs.writeFileSync("./examples/logo.svg", logo);
           console.log("Generated logo.svg");
-        
-
         } else {
           console.log("Let's try that again");
           start();
@@ -81,9 +68,6 @@ function start() {
       });
     }
     
-
-    
-
 start();
 
 
