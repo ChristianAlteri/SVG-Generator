@@ -1,10 +1,11 @@
+// Create a Shapes class and assign correct values
 class Shapes {
   constructor(company, color, textColor) {
     this.company = company;
     this.color = color;
     this.textColor = textColor;
   }
-
+  // Use method to create html of svg and call renderShape() inside html
   toHTML() {
     return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="black" />
@@ -14,6 +15,7 @@ class Shapes {
   }
 }
 
+//Inherit the assigned data from Shapes and create a specific method for each shape which renders the appropriate shape html 
 class Triangle extends Shapes {
   renderShape() {
     return `<polygon points="50,100 150,20 250,100" fill="${this.color}" />`;
@@ -30,5 +32,5 @@ class Square extends Shapes {
   }
 }
 
-
-export { Shapes, Triangle, Circle, Square };
+// export 
+module.exports = { Shapes, Triangle, Circle, Square };

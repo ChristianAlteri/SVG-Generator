@@ -4,6 +4,9 @@
 
 This command line app is a versatile tool specifically developed for generating Scalable Vector Graphics (SVG). By utilizing a series of command line prompts, the app interacts with the user to gather input, enabling the customization of the generated SVG based on the provided data. These prompts cover various aspects such as your company name, color schemes, and logo shape, ensuring that the resulting SVG is tailored to the user's preferences. With its ability to produce scalable graphics without loss of quality, the app simplifies the creation of visually appealing and personalized SVG files, making it a valuable asset for web design, data visualization, and graphic design projects.
 
+![Alt Text](./assets/Screen.png)
+
+
 ## Table of contents:
 
 * Title
