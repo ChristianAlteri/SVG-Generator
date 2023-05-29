@@ -1,7 +1,8 @@
 // Import dependencies
-import fs from "fs";
-import inquirer from "inquirer";
-import { Triangle, Circle, Square } from "./shapes.js";
+const fs = require("fs");
+const inquirer = require("inquirer");
+const { Triangle, Circle, Square } = require("./shapes.js");
+
 
 function validateCompany(company) {
   // we only provide true if condition is met. Inquirer won't move to next question if false. if false we use the || to pass an err msg. (less of an err more of a blocker)
