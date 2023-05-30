@@ -14,13 +14,13 @@ This command line app is a versatile tool specifically developed for generating 
 * Installation
 * Usage
 * Author
-* GitHb Link
+* GitHub Link
 * License
 
 ## Installation:
 
 ```bash
-npm install inquirer@9.2.6
+npm install inquirer@8
 node index.js
 ```
 
